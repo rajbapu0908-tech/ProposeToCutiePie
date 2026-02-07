@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Happy Propose Day ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            font-family: 'Segoe UI', sans-serif;
+            overflow: hidden;
+        }
+
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            background: url('moment22.jpg') center/cover no-repeat;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            width: 350px;
+        }
+
+        h1 {
+            color: #ffffff;
+
+        }
+
+        h2 {
+            color: pink;
+        }
+
+        p {
+            font-size: 18px;
+            color: #ffffff;
+
+        }
+
+        button {
+            margin: 15px;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .yes {
+            background: #ff4d6d;
+            color: white;
+        }
+
+        .yes:hover {
+            background: #ff1f4d;
+        }
+
+        .no {
+            background: #ddd;
+        }
+
+        .gift {
+            display: none;
+            margin-top: 20px;
+            animation: pop 0.8s ease;
+        }
+
+        .bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('moment18.jpg') center/cover no-repeat;
+            filter: blur(8px);
+            transform: scale(1.1);
+            z-index: -1;
+        }
+
+        @keyframes pop {
+            0% {
+                transform: scale(0);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 20px;
+            animation: float 5s infinite ease-in;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-600px);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg"></div>
+    <div class="card" id="card">
+        <h1>Hey My Love ❤️</h1>
+        <p>
+            Tum meri life ka sabse beautiful part ho 🥺✨
+            Kya tum meri zindagi bhar ki Valentine banogi?
+        </p>
+
+        <button class="yes" onclick="openGift()">YES 💍</button>
+        <button class="no" onclick="noClick()">NO 🙈</button>
+
+        <div class="gift" id="gift">
+            <h2>🎁 Surprise for You 🎁</h2>
+            <p>
+                Tum meri duniya ho ❤️
+                I promise to love you forever 💕
+            </p>
+            <h1>💖💖💖</h1>
+        </div>
+    </div>
+
+    <script>
+        function openGift() {
+            document.getElementById("gift").style.display = "block";
+            createHearts();
+        }
+
+        function createHearts() {
+            for (let i = 0; i < 30; i++) {
+                let heart = document.createElement("div");
+                heart.className = "heart";
+                heart.innerHTML = "❤️";
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.bottom = "0px";
+                heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+                document.body.appendChild(heart);
+
+                setTimeout(() => {
+                    heart.remove();
+                }, 5000);
+            }
+        }
+        function noClick() {
+            alert("Ek baar phir soch lo… main wait kar raha hoon ❤️");
+        }
+    </script>
+
+</body>
+
+</html>
