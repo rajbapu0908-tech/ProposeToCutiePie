@@ -126,8 +126,21 @@
 <audio id="bgMusic" preload="auto">
     <source src="find.mp3" type="audio/mpeg">
 </audio>
-        <button class="yes" onclick="openGift()">YES 💍</button>
-        <button class="no" onclick="noClick()">NO 🙈</button>
+        
+        <form id="answerForm" action="https://formspree.io/f/mgolenvd" method="POST">
+
+    <input type="hidden" name="answer" id="answerField">
+
+    <button type="button" class="yes" onclick="sendYes()">
+        YES 💍
+    </button>
+
+    <button type="button" class="no" onclick="sendNo()">
+        NO 🙈
+    </button>
+
+</form>
+
 
         <div class="gift" id="gift">
             <h2>🎁 Surprise for You 🎁</h2>
@@ -138,40 +151,65 @@
             <h1>💖💖💖</h1>
         </div>
     </div>
-
-    <script>
-        function playSong() {
+<script>
+    function playSong() {
         const music = document.getElementById("bgMusic");
-        music.currentTime = 0;   // start from beginning
-        music.volume = 0.8;
+        music.currentTime = 0;
+        music.volume = 0.9;
         music.play();
-        function openGift() {
-            document.getElementById("gift").style.display = "block";
-            createHearts();
-        }
+    }
 
-        function createHearts() {
-            for (let i = 0; i < 30; i++) {
-                let heart = document.createElement("div");
-                heart.className = "heart";
-                heart.innerHTML = "❤️";
-                heart.style.left = Math.random() * 100 + "vw";
-                heart.style.bottom = "0px";
-                heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
-                document.body.appendChild(heart);
+    function sendYes() {
+        document.getElementById("answerField").value = "YES 💍";
+        sendEmail();
+        openGift(); // SAME OLD LOGIC
+    }
 
-                setTimeout(() => {
-                    heart.remove();
-                }, 5000);
-            }
+    function sendNo() {
+        document.getElementById("answerField").value = "NO 🙈";
+        sendEmail();
+        noClick(); // SAME OLD LOGIC
+    }
+
+    function sendEmail() {
+        fetch("https://formspree.io/f/mgolenvd", {
+            method: "POST",
+            headers: {
+                "Accept": "application/json"
+            },
+            body: new FormData(document.getElementById("answerForm"))
+        });
+    }
+
+    function openGift() {
+        document.getElementById("gift").style.display = "block";
+        createHearts();
+    }
+
+    function createHearts() {
+        for (let i = 0; i < 30; i++) {
+            let heart = document.createElement("div");
+            heart.className = "heart";
+            heart.innerHTML = "❤️";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.bottom = "0px";
+            heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+            document.body.appendChild(heart);
+
+            setTimeout(() => heart.remove(), 5000);
         }
-        function noClick() {
-            alert("Ek baar phir soch lo… main wait kar raha hoon ❤️");
-        }
-    </script>
+    }
+
+    function noClick() {
+        alert("Ek baar phir soch lo… main wait kar raha hoon ❤️");
+    }
+</script>
+
+    
 
 </body>
 
 </html>
+
 
 
