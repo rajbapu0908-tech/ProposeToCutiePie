@@ -121,7 +121,11 @@
             Tum meri life ka sabse beautiful part ho 🥺✨
             Kya tum meri zindagi bhar ki Valentine banogi?
         </p>
+        <button onclick="playSong()">click🎶</button><br>
 
+<audio id="bgMusic" preload="auto">
+    <source src="Barish.mp3" type="audio/mpeg">
+</audio>
         <button class="yes" onclick="openGift()">YES 💍</button>
         <button class="no" onclick="noClick()">NO 🙈</button>
 
@@ -136,6 +140,11 @@
     </div>
 
     <script>
+        function playSong() {
+        const music = document.getElementById("bgMusic");
+        music.currentTime = 0;   // start from beginning
+        music.volume = 0.8;
+        music.play();
         function openGift() {
             document.getElementById("gift").style.display = "block";
             createHearts();
@@ -164,3 +173,4 @@
 </body>
 
 </html>
+
